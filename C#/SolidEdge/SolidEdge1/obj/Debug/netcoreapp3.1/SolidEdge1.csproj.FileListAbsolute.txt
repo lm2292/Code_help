@@ -1,0 +1,13 @@
+D:\University of Bath\Code\C#\SolidEdge\SolidEdge1\bin\Debug\netcoreapp3.1\SolidEdge1.exe
+D:\University of Bath\Code\C#\SolidEdge\SolidEdge1\bin\Debug\netcoreapp3.1\SolidEdge1.deps.json
+D:\University of Bath\Code\C#\SolidEdge\SolidEdge1\bin\Debug\netcoreapp3.1\SolidEdge1.runtimeconfig.json
+D:\University of Bath\Code\C#\SolidEdge\SolidEdge1\bin\Debug\netcoreapp3.1\SolidEdge1.runtimeconfig.dev.json
+D:\University of Bath\Code\C#\SolidEdge\SolidEdge1\bin\Debug\netcoreapp3.1\SolidEdge1.dll
+D:\University of Bath\Code\C#\SolidEdge\SolidEdge1\bin\Debug\netcoreapp3.1\SolidEdge1.pdb
+D:\University of Bath\Code\C#\SolidEdge\SolidEdge1\obj\Debug\netcoreapp3.1\SolidEdge1.csprojAssemblyReference.cache
+D:\University of Bath\Code\C#\SolidEdge\SolidEdge1\obj\Debug\netcoreapp3.1\SolidEdge1.AssemblyInfoInputs.cache
+D:\University of Bath\Code\C#\SolidEdge\SolidEdge1\obj\Debug\netcoreapp3.1\SolidEdge1.AssemblyInfo.cs
+D:\University of Bath\Code\C#\SolidEdge\SolidEdge1\obj\Debug\netcoreapp3.1\SolidEdge1.csproj.CoreCompileInputs.cache
+D:\University of Bath\Code\C#\SolidEdge\SolidEdge1\obj\Debug\netcoreapp3.1\SolidEdge1.dll
+D:\University of Bath\Code\C#\SolidEdge\SolidEdge1\obj\Debug\netcoreapp3.1\SolidEdge1.pdb
+D:\University of Bath\Code\C#\SolidEdge\SolidEdge1\obj\Debug\netcoreapp3.1\SolidEdge1.genruntimeconfig.cache

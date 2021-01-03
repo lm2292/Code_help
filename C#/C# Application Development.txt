@@ -1,0 +1,116 @@
+C# Application Development
+__________________________________________________________________________________________
+
+Initial Planning
+	Questions: 
+	- How many players will the tournament handle?
+	- If a tournament has less than the full completement of players.
+	- Should the ordering of who plays each other be random or ordered by an input order?
+	- Shoul we schedule the games? 
+	- If the games are played whenever, can a game from the second round be played before the first round is complete.
+	- Does the system need to store a score of some kind or just won?
+	- What type of frond-end? 
+	- Where will the data be stored?
+	- Will the system handle entry fees, prizes, or other payouts? 
+	- What type of reporting is needed?
+	- Who can fill in the results of a game? 
+	- Are there varying levels of access? 
+	- Should this system contact users about upcoming games? 
+	- Is each player on their own or can teams use this tournament tracker? 
+	
+
+__________________________________________________________________________________________
+
+Overview Planning
+	Answers for our questions: 
+	- The application should handle a variable number of players in a tournament.
+	- A tournament with lesst than the perfect number should add in "byes". Basically, certain people selected at random get to skip 
+	 the first round. 
+	- The ordering shozuld be random. 
+	- The games should be played in whatever order.
+	- No, games have to be played in order. 
+	- Storing simple score would be nice.
+	- The system should a desktop system for now, but down the road we might want to turn it into an app or a website. 
+	- Ideally the data should be stored in Microsoft SQL database but please put in an option to store to a text file instead.
+	- Yes. The tournament should have the option of chargind an entry fee. Prizes shoud also be an option, where the tournament adinistrator chooses how mmuch money to award a variable number of places.
+	 A percentage-based system would be nice to specify. 
+	- A simple report specyfing the outcome of the games per round as well as a report that specifies who won and how much.
+	- Anyone using the application should be able to fill in the data.
+	- No varying data level of access. The only method of varied access is if the competitors do not have access to desktop.
+	- Yes, the system should email users that they are due to play in a round as wll as who they are scheduled to play.
+	- The tournament tracker should be able to handle the addition of other members. All members should be treated as equals in that they all get tournament emails. Teams should also be able to name their team.
+
+__________________________________________________________________________________________
+
+Big Picture Design
+	Structure : Windows Forms aplication and Class Library
+	Data: SQL and/or Text File
+	Users: One at a time on one application 
+	Key concepts:
+	 - Email
+	 - SQL
+	 - Custom Events 
+	 - Error Handling 
+	 - Interfaces 
+	 - Random Ordering 
+	 - Texting
+
+__________________________________________________________________________________________
+
+Data Design
+ Mapping the Data 
+	- create classes (Team, Person) and highlight their properties (TeamMembers, TeamName) to better understand how the application will work
+	Team: 
+		TeamMembers (List<Person>)
+		TeamName (string)
+	Person: 
+		FirstName (string)
+		LastName (string)
+		EmailAddress (string)
+		CellphoneNumber (string)
+	Tournament:
+		TournamentName (string)
+		EntryFee (decimal)
+		EnteredTeams (List<Team>)
+		Prizes (List<Prize>)
+		Rounds (List<List<Matchup>>) - Matchup: one team cs another: list of Matchups for each round and set of matchups that represent the entire round 
+	Prize:
+		PlaceNumber (int)
+		PlaceName (string) - Calling different places different names like Champion or first runner-up
+		PrizeAmount (decimal) 
+		PrizePercentage (double) - the amount the winner and runner ups get when they win
+	Matchup: 
+		Entries (List<MatchupEntry>)
+		Winner(Team)
+
+	MatchupEntry:
+		TeamCompeting (Team)
+		Score (double)
+		ParentMatchup (Matchup) - to know which team played which in the previous round to be able to track the winner through multiple rounds
+
+__________________________________________________________________________________________
+
+User Interface Desgin
+	- sketch up the basic forms for user interfaces
+
+__________________________________________________________________________________________
+Logic Planning	
+	- plan what buttons will do and how different command interacts
+__________________________________________________________________________________________
+Creating Class Library
+	- create a C# class library .dll, delete the defaut Class 1 class to avoid having anything 
+	named default 
+
+	- Create class for each model (TeamModel, PersonModel) and define its properties (i.e.TeamName, List<Person>, PhoneNumber, FirstName, LastName)
+ 	
+		
+ 		
+			
+	
+
+
+
+
+
+
+

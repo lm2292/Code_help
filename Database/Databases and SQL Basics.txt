@@ -1,0 +1,511 @@
+Databases
+-------------------------------------------------------
+
+- Database is any collection of related information
+- Computer are great for storing databases
+- Database Management System (DBMS) make it eaty to create, maintain and secure a database
+- DBMS allow you to perform C.R.U.D operations and other administrative tasks
+- Two types of Databases, Relational and Non-Relational
+- Relational databases use SQL and store data in tables with rows and columns
+- Non-relational data store data using another data structures
+
+
+Primary key
+-------------------------------------------------------
+can be a random number as assigned to a employee, like an employee ID
+
+Types of primary keys
+- surrogate key - do not relate to anything in the real world
+- natural key - can be a ssn (social security number) used to identify an entry in a database
+and has a mapping to real world
+- forreign keys - stores the primary key in a row of another table i.e. employee ID to
+identify the employee and then branch ID to identify the branch and further - table can have more 
+than one forreign key 
+- composite key - primary key that requires two or more collumns - i.e. branch id and supplier name 
+to identify branch supplier to identify what supplier supplies what to certai branch id
+- primary key can be defined by composite key consisting of two forreign keys 
+
+SQL Basics
+-------------------------------------------------------
+- SQL is a language used for interacting with RDBMS
+- SQL can be used to use RDBMS to : 
+	- create, retrieve, update & delete
+	- create and manage databases
+	- design and create database tables
+	- perform administration tasks (security, user management, import/export)
+- SQL implementations vary between systems
+	- not all RDBMS follow the SQL standard to a 'T' 
+	- concepts are the same but the implementations vary
+- SQL is a hybrid langugage
+	- Data Query Language (DQL)
+		- used to query the database for information
+		- get information that is already stored
+	- Data Definition Language (DDL) 
+		- uesd for defining database schemas
+	- Data Control Language (DCL)
+		- used for controlling access to the data in the databases
+		- user and permissions management
+	- Data Manipulation Language (DML)
+		- used for inserting, updating and deleting data from the database
+
+Queries
+-------------------------------------------------------
+- set of instructions given to the RDBMS that tell the RDBMS what information you want it to retrieve
+	- TONS of data in DB
+	- often hidden in a compelx schema
+	- goal is to only get the data you need
+
+Data types
+-------------------------------------------------------
+INT 		- whole numbers
+DECIMAL(M,N) 	- decimal numbers, exact values
+VARCHAR(l)	- string of text on length l
+NVARCHAR(l)	- takes in non english characters
+BLOB		- Binary Large Object, stores large data
+DATA		- YYYY-MM-DD
+TIMESTAMP	- YYYY-MM-DD - used for recording when certain thing happened
+
+CREATE TABLE
+-------------------------------------------------------
+CREATE TABLE student (
+	student_id INT PRIMARY KEY,
+	name VARCHAR(20),
+	major VARCHAR(20),
+);
+
+CREATE TABLE student (
+	student_id INT,
+	name VARCHAR(20),
+	major VARCHAR(20),
+	PRIMARY KEY(student_id)
+);
+
+CREATE TABLE student (
+	student_id INT AUTO_INCREMENT,
+	name VARCHAR(20) NOT NULL,
+	major VARCHAR(20) DEFAULT 'undecided',
+	PRIMARY KEY(student_id)
+);
+ 
+Delete table
+-------------------------------------------------------
+DROP TABLE student;
+
+Add column into an existing table
+-------------------------------------------------------
+ALTER TABLE student ADD gpa DECIMAL(3,2);
+- creates a column called gpa, type decimal with 3 total numbers and 2 decimal places
+
+Delet column from an existing table
+-------------------------------------------------------
+ALTER TABLE student DROP COLUMN gpa; 
+
+Inserting values into table
+-------------------------------------------------------
+INSERT INTO student VALUES (1,'Jack', 'Biology');
+	- inserts valeus at all specified columns
+INSERT INTO student(student_id, name) VALUES (3,'Claire');
+	- only inserts values at specified columns (student_id and name, inserts NULL for Major)
+
+Show data from table
+-------------------------------------------------------
+SELECT * FROM student
+
+Update & Delete
+-------------------------------------------------------
+UPDATE student
+SET major = 'Biochemistry'
+WHERE major = 'Bio' OR major = 'Sports';
+
+UPDATE student
+SET major = 'Maths', fullname = 'Peter Parker' 
+WHERE major = 'Eng' OR major = 'Sociology';
+
+UPDATE student
+SET major ='undecided'; //Updates major to undecided for all table entries
+
+DELETE FROM student
+WHERE student_id = 4;
+
+Basic Queries
+-------------------------------------------------------
+SELECT student.fullname, student.major
+FROM student;
+
+SELECT student.fullname, student.major
+FROM student
+ORDER BY fullname; //Ascending order
+
+SELECT student.fullname, student.major
+FROM student
+ORDER BY fullname DESC; //Descending order
+
+SELECT *
+FROM student
+ORDER BY major, student_id; //Orders the table data by major first and then for 
+			    //those with the same major orders by name
+
+SELECT TOP (2) *		
+FROM student
+ORDER BY student_id DESC	//Limits to two data entries selected from student table
+				//orders them by student_id descending
+
+SELECT fullname, major
+FROM student
+WHERE major = 'Biology' OR major = 'undecided'
+
+SELECT * 
+FROM student
+WHERE fullname IN ('Lukas Macha', 'Peter Parker') AND student_id >2;	//Selects entries where
+									//fullname is one of the entered and student id >2
+
+Company Database Example
+-------------------------------------------------------
+CREATE TABLE employee(
+	emp_id INT PRIMARY KEY,
+	first_name VARCHAR(20),
+	last_name VARCHAR(20),
+	birth_day DATE, 
+	sex VARCHAR(1),
+	salary INT,
+	super_id INT,
+	branch_id INT,
+);
+
+CREATE TABLE branch(
+	branch_id PRIMARY KEY,
+	branch_name VARCHAR(15),
+	mgr_id INT,
+	mgr_start_data DATE, 
+	FOREIGN KEY(mgr_id) REFERENCES employee(emp_id) ON DELETE SET NULL //mgr_id(forreig key) references to (employee(emp_id))
+);
+
+
+ALTER TABLE employee
+ADD FOREIGN KEY(branch_id)
+REFERENCES branch(branch_id)
+ON DELETE NO ACTION;
+
+ALTER TABLE employee
+ADD FOREIGN KEY(super_id)
+REFERENCES employee(emp_id)
+ON DELETE NO ACTION;
+
+CREATE TABLE client(
+	client_id INT PRIMARY KEY,
+	client_name VARCHAR(15),
+	branch_id INT,
+	FOREIGN KEY(branch_id) REFERENCES branch(branch_id) ON DELETE SET NULL
+);
+
+CREATE TABLE works_with(
+	emp_id INT,
+	client_id INT,
+	total_sales INT,
+	PRIMARY KEY(emp_id,client_id),
+	FOREIGN KEY(emp_id) REFERENCES employee(emp_id) ON DELETE CASCADE,
+	FOREIGN KEY(client_id) REFERENCES client(client_id) ON DELETE NO ACTION
+);
+
+CREATE TABLE branch_supplier(
+	branch_id INT,
+	supplier_name VARCHAR(15),
+	supply_type VARCHAR(15),
+	PRIMARY KEY(branch_id, supplier_name),
+	FOREIGN KEY(branch_id) REFERENCES branch(branch_id) ON DELETE NO ACTION
+);
+
+INSERT INTO employee VALUES(100,'David','Wallace','1967-11-17','M',250000,NULL,NULL)
+
+INSERT INTO branch VALUES(1,'Corporate',100, '2006-02-09')
+
+UPDATE employee
+SET branch_id = 1
+WHERE emp_id = 100; 
+
+INSERT INTO employee VALUES(101, 'Jan','Levinson','1961-05-11','F',110000,100,1);
+
+--Scranton
+INSERT INTO employee VALUES(102, 'Michael', 'Scott', '1964-03-15', 'M', 75000, 100, NULL);
+
+INSERT INTO branch VALUES(2, 'Scranton', 102, '1992-04-06');
+
+UPDATE employee
+SET branch_id = 2
+WHERE emp_id = 102;
+
+INSERT INTO employee VALUES(103, 'Angela', 'Martin', '1971-06-25', 'F', 63000, 102, 2);
+INSERT INTO employee VALUES(104, 'Kelly', 'Kapoor', '1980-02-05', 'F', 55000, 102, 2);
+INSERT INTO employee VALUES(105, 'Stanley', 'Hudson', '1958-02-19', 'M', 69000, 102, 2);
+
+-- Stamford
+INSERT INTO employee VALUES(106, 'Josh', 'Porter', '1969-09-05', 'M', 78000, 100, NULL);
+
+INSERT INTO branch VALUES(3, 'Stamford', 106, '1998-02-13');
+
+UPDATE employee
+SET branch_id = 3
+WHERE emp_id = 106;
+
+INSERT INTO employee VALUES(107, 'Andy', 'Bernard', '1973-07-22', 'M', 65000, 106, 3);
+INSERT INTO employee VALUES(108, 'Jim', 'Halpert', '1978-10-01', 'M', 71000, 106, 3);
+
+
+-- BRANCH SUPPLIER
+INSERT INTO branch_supplier VALUES(2, 'Hammer Mill', 'Paper');
+INSERT INTO branch_supplier VALUES(2, 'Uni-ball', 'Writing Utensil');
+INSERT INTO branch_supplier VALUES(3, 'Patriot Paper', 'Paper');
+INSERT INTO branch_supplier VALUES(2, 'J.T. F&L', 'Custom Forms');
+INSERT INTO branch_supplier VALUES(3, 'Uni-ball', 'Writing Utensil');
+INSERT INTO branch_supplier VALUES(3, 'Hammer Mill', 'Paper');
+INSERT INTO branch_supplier VALUES(3, 'Stamford Lables', 'Custom Forms');
+
+-- CLIENT
+INSERT INTO client VALUES(400, 'Dunmore High', 2);
+INSERT INTO client VALUES(401, 'Lack Cntry', 2);
+INSERT INTO client VALUES(402, 'FedEx', 3);
+INSERT INTO client VALUES(403, 'John Daly, LLC', 3);
+INSERT INTO client VALUES(404, 'Scranton White', 2);
+INSERT INTO client VALUES(405, 'Times News', 3);
+INSERT INTO client VALUES(406, 'FedEx', 2);
+
+-- WORKS_WITH
+INSERT INTO works_with VALUES(105, 400, 55000);
+INSERT INTO works_with VALUES(102, 401, 267000);
+INSERT INTO works_with VALUES(108, 402, 22500);
+INSERT INTO works_with VALUES(107, 403, 5000);
+INSERT INTO works_with VALUES(108, 403, 12000);
+INSERT INTO works_with VALUES(105, 404, 33000);
+INSERT INTO works_with VALUES(107, 405, 26000);
+INSERT INTO works_with VALUES(102, 406, 15000);
+INSERT INTO works_with VALUES(105, 406, 130000);
+
+More Basic Queries
+-------------------------------------------------------
+-- Find all employees
+SELECT * 
+FROM employee;
+
+--Find all clients
+SELECT * 
+FROM client;
+
+--Find all employees ordered by salary
+SELECT * 
+FROM employee
+ORDER BY salary DESC;
+
+--Find all employees ordered by sex then name
+SELECT * 
+FROM employee
+ORDER BY sex,first_name, last_name;
+
+--Find the first 5 employees in the table
+SELECT TOP (5) *  
+FROM employee;
+
+--Find the first and last names of all employees
+SELECT first_name, last_name
+FROM employee;
+
+--Find the first and last names of all employees and display in 
+--columns as forename and surname
+SELECT first_name AS forename, last_name AS surname
+FROM employee;
+
+--Find out all the different genders
+SELECT DISTINCT sex 
+FROM employee;
+
+Functions
+-------------------------------------------------------
+--Find the number of employees
+SELECT COUNT(emp_id)
+FROM employee;
+
+--Find the number of employees with supervisor
+SELECT count(super_id)
+FROM employee;
+
+--Find the number of female employees born after 1970
+SELECT COUNT(emp_id)
+FROM employee
+WHERE sex ='F' AND birth_day >= '1971-01-01';
+
+--Find the average of all employees salary
+SELECT AVG(salary)
+FROM employee;
+
+--Find the average of all male employees
+SELECT AVG(salary)
+FROM employee
+WHERE sex = 'M';
+
+--Find the sum of all employees salary
+SELECT SUM(salary)
+FROM employee;
+
+--Aggregation
+--Find out how many males and females there are
+SELECT COUNT(sex) AS 'Number of employees', sex AS 'Sex' 
+FROM employee
+GROUP BY sex;
+
+--Find the total sales of each salesman
+SELECT SUM(total_sales) AS 'Total Sales', emp_id AS 'Employee ID'
+FROM works_with
+GROUP BY emp_id;
+
+Wildcards
+-------------------------------------------------------
+
+-- % = any # characters, _= one character
+--Find any client who are an LLC
+SELECT * 
+FROM client
+WHERE client_name LIKE '%LLC';
+
+--Find branch suppliers who are in the label business
+SELECT * 
+FROM supplier
+WHERE supply_type LIKE
+
+SELECT *
+FROM branch_supplier
+WHERE supplier_name LIKE '%Lables'
+
+--Find any employee born in October
+SELECT * 
+FROM employee
+WHERE birth_day LIKE '____-10%'
+
+--Find any clients who are school
+SELECT * 
+FROM client
+WHERE client_name LIKE '%school%'
+
+Union
+-------------------------------------------------------
+
+--RULES
+-- 1) Both searches must look for the same number of columns
+--    i.e. first_name and branch_name only
+-- 2) Both seraches must be for same data types
+
+--Find a list of employee and branch names
+SELECT first_name 
+FROM employee
+UNION
+SELECT branch_name
+FROM branch;
+
+SELECT first_name AS 'Company Names'
+FROM employee
+UNION
+SELECT branch_name 
+FROM branch
+UNION
+SELECT client_name 
+FROM client;
+
+--Find a list of all supllier and client names
+SELECT client_name
+FROM client
+UNION
+SELECT supplier_name
+FROM branch_supplier;
+
+--Find a list of all clients and branch suppliers' names
+SELECT client_name, branch_id
+FROM client
+UNION
+SELECT supplier_name, branch_id
+FROM branch_supplier;
+
+
+--Find a list of all clients and branch suppliers' names
+SELECT client_name, client.branch_id		//client.branch_id just identifies that the branch_id comes from client and makes the code more readable
+FROM client
+UNION
+SELECT supplier_name, branch_supplier.branch_id
+FROM branch_supplier;
+
+--Find a list of all money spent or earner by the company
+SELECT salary
+FROM employee
+UNION
+SELECT total_sales
+FROM works_with
+
+Joins
+-------------------------------------------------------
+
+--Find all branches and the names of their managers
+SELECT employee.emp_Id, employee.first_name,branch.branch_name
+FROM employee
+JOIN branch
+ON employee.emp_Id = branch.mgr_id; --Combines all of the rows from the employee table
+									--and all of the rows from the branch table where emp_Id = mgr_Id
+--Only shows results for employees which are also managers
+
+//Different types of joins 
+//	1) JOIN - inner join only selects results that match - in the query above the JOIN means 
+		that only those emp_Id that match mgr_Id are displayed
+	2) LEFT JOIN - includes all employees from the left table (employee) and only those that match the emp_Id from the right table
+	3) RIGHT JOIN - includes all employees from the right table (including the branch that do not have manager - Buffaloe)
+			and only those matching from the left table (employees)
+	4) FULL OUTER JOIN - LEFT and RIGHT JOIN combined
+
+Nested queries
+-------------------------------------------------------
+--Find ids of all employees who have
+--sold over 30 000 to a single client
+
+SELECT works_with.emp_id
+FROM works_with
+WHERE works_with.total_sales > 30000;
+
+--Find names of all employees who have
+--sold over 30 000 to a single client
+SELECT employee.first_name, employee.last_name
+FROM employee
+WHERE employee.emp_id IN 
+	(
+	SELECT works_with.emp_id
+	FROM works_with
+	WHERE works_with.total_sales > 30000
+	);
+
+--Find all clients who are handled by the branch
+--that Michael Scott manages
+--Assume you know Michael's ID
+
+SELECT client.client_name
+FROM client
+WHERE client.branch_id = 
+	(
+	SELECT branch.branch_id
+	FROM branch
+	WHERE branch.mgr_id	= 102
+	);
+
+ON DELETE
+-------------------------------------------------------
+ON DELETE SET NULL 
+	- when used it sets the foreign key to NULL i.e. if an employee who is a manager
+	is deleted from the table the mgr_id is set to NULL for those employees this manager
+	managed
+
+ON DELETE CASCADE
+	- where FOREING is also a PRIMARY KEY it has to be CASCADED because it is crucial
+	for the table
+
+TRIGGERS
+-------------------------------------------------------
+
+
+
+
+
+
+

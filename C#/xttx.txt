@@ -1,0 +1,26 @@
+public interface IDataConnection
+{
+	PrizeModel CreatePrize(PrizeModel model);
+	
+}
+
+GlobalConfig class 
+
+public static class GlobalConfig
+{
+	public static List<IDataConnections> Connections { get; private set; }
+
+	public static void InitializeConnectins(bool database, bool textFiles)
+	{
+		if(database)
+		{
+   			//TODO - do something - Create the SQL connection
+   		}
+
+		if(textfiles)
+		{
+			//TODO - do something - Create the TextConnection
+		}
+	
+	}
+}

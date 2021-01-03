@@ -1,0 +1,696 @@
+static void Main(string[] args)
+{
+	Console.WriteLine("Hello World"); 
+
+	Console.ReadLine();
+}
+________________________________________________________________________________________
+/*Variables
+
+static void Main(string[] args)
+{
+	string characterName = "Lukas";
+	int characterAge = 23;
+	int characterAge;
+	characterAge = 35; 
+	
+	Console.Writeline("There once was a man named " + characterName);
+	Console.Writeline("He was" + characterAge + "years old");
+
+	characterName = "Mike";
+	Console.Writeline("He really liked the name" + characterName);
+	Console.Writeline("But didn't like being" + characterAge);
+}
+
+{
+	string phrase = "Giraffe Academy";
+	char grade = 'A';
+	int age = 30; 
+	// float, double, decimal
+	// float(least accurate), double(more accurate), decimal(most accurate) 		
+	double gpa = 3.2;
+	bool isMale
+}
+
+{
+
+	Console.Write("Enter your name: ");	
+	string name = Console.ReadLine();
+	Console.WriteLine("Hello " + name);
+*/ 	 
+________________________________________________________________________________________
+/* Working with strings
+            
+            string phrase = "Giraffe Academy";
+            Console.WriteLine( phrase.Length );
+            Console.WriteLine( phrase.ToUpper() );
+            Console.WriteLine( phrase.Contains("Academy") );
+            Console.WriteLine( phrase[0]);
+            Console.WriteLine( phrase[3]);
+            Console.WriteLine( phrase.IndexOf('f') );
+            Console.WriteLine(phrase.Substring(8,5) );
+            */
+________________________________________________________________________________________
+/* Working with numbers
+            
+            Console.WriteLine( 5 % 2 ); // Getting the reminder of the division
+            Console.WriteLine((4 + 2) * 2);
+            int num = 6;
+            num++;
+            Console.WriteLine(num);
+            Console.WriteLine(Math.Pow(2, 3));
+            Console.WriteLine(Math.Max(3, 4));
+            */
+________________________________________________________________________________________
+/* Getting User Input
+             
+            Console.Write("Enter your name: "); // Prompts User to enter text
+            string name = Console.ReadLine(); // Waits for the user to enter text and saves it as var name
+            Console.WriteLine("Hello, " + name);
+            Console.Write("Enter your age: ");
+            string age = Console.ReadLine();
+            Console.WriteLine("Hello, " + name + " you are " + age + " years old ");
+            */
+________________________________________________________________________________________
+/* Building a Calculator
+            
+            int num = Convert.ToInt32("45"); //Converts string to number
+            Console.WriteLine(num + 6);
+            Console.WriteLine( "43" + "56" ); //Only combines two strings
+            Console.Write("Enter a number: ");
+            double num1 = Convert.ToDouble( Console.ReadLine() ); //Allows the user to input nubmer as double
+
+            Console.Write("Enter another number: ");
+            int num2 = Convert.ToInt32(Console.ReadLine()); //Allows the user to input nubmer as int
+
+            Console.WriteLine(num1 + num2);
+            */
+________________________________________________________________________________________
+/* Building a Mad Libs Game
+            
+            string color, pluralNoun, celebrity; // Allows declaring more strings in one row
+
+            Console.WriteLine("Enter a color: ");
+            color = Console.ReadLine();
+            Console.WriteLine("Enter a plural noun: ");
+            pluralNoun = Console.ReadLine();
+            Console.WriteLine("Enter a celebrity: ");
+            celebrity = Console.ReadLine();
+
+            Console.WriteLine("Roses are " + color);
+            Console.WriteLine(pluralNoun + " are blue");
+            Console.WriteLine("I love " + celebrity);
+            */
+________________________________________________________________________________________
+/* Arrays
+            int[] luckyNumbers = { 4, 8, 15, 23, 12, 32 }; // Stores multiple numbers in an array
+            string[] friends = new string[10]; //Stores multiple strings in an array 
+            friends[0] = "Tom"; //Assigns a value to element 0 in an array "friends"
+            luckyNumbers[1] = 900;
+
+            Console.WriteLine( luckyNumbers[1] );
+            */
+________________________________________________________________________________________
+*/ Methods
+	    static void Main(string[] args) //Main method(function) of the program that gets executed
+       {
+           SayHi("Lukas",23); //Calling the SayHi method in the MAIN method, two inputs required, one for NAME and one for AGE
+           Console.ReadLine();
+
+       }
+
+       
+        static void SayHi(string name, int age) //Static declares method, void means this methods does not redutn any value
+                            //SayHi is the name of the function(method)
+        {
+            Console.Write("Enter your name: ");
+            name = Console.ReadLine();
+            Console.Write("Enter your age: ");
+            age = Convert.ToInt32( Console.ReadLine() ); //Stores age as an integer although it is input as a string
+
+            Console.WriteLine("Hello " + name + " you are " + age + " years old!! ");
+        }
+	    */
+________________________________________________________________________________________
+/* Return statement
+
+static void Main(string[] args) //Main method(function) of the program that gets executed
+       {
+            int cubedNumber = cube(5);
+            Console.WriteLine(cubedNumber);
+            cube(5);
+           Console.ReadLine();
+
+       }
+
+        static int cube(int num) //Static means a new method, int means that an integer is returned 
+        {
+            int result = num * num * num;
+            Console.WriteLine(result); //Can either print it in this method or use Console.WriteLine(cube(5)) to print the value in the main method
+            return result;
+
+        }
+*/ 
+________________________________________________________________________________________
+/* If Statement
+             
+            bool isMale = true; //Creates a boolean variable
+            bool isTall = true;
+
+            if (isMale && isTall) //Using && means first and second conditions are met, using || means one or the other conditions are met
+            {
+                Console.WriteLine("You are tall male!!");
+            } else if (isMale && !isTall) //Reads as not tall 
+            {
+                Console.WriteLine("You are short male");
+            } else if (!isMale && isTall) 
+            {
+                Console.WriteLine( "You are not a male but you are tall!!" );
+            } else
+            {
+                Console.WriteLine("You are not tall male");
+            }
+            */
+
+/* If Statement cont'
+         
+        static void Main(string[] args) //Main method(function) of the program that gets executed
+        {
+            Console.WriteLine( getMax(2, 3,5) );
+            Console.ReadLine();
+        }
+        static int getMax(int num1, int num2, int num3) 
+        {
+            int result;
+            if (num1 >= num2 && num1 >= num3)
+            {
+                result = num1;
+            } else if (num2 >= num1 && num2 >= num3)
+            {
+                result = num2;
+            }
+            else 
+            {
+                result = num3;
+            }
+            return result;
+        }
+            
+        */
+________________________________________________________________________________________
+   /* Building Better Calculator
+             
+            Console.Write("Enter a number: ");
+            double num1 = Convert.ToDouble(Console.ReadLine());
+
+            Console.Write("Enter operator: ");
+            string op = Console.ReadLine();
+
+            Console.Write("Enter another number: ");
+            double num2 = Convert.ToDouble(Console.ReadLine());
+            double result;
+            if (op == "+")
+            {
+                Console.WriteLine(num1 + num2);
+            }
+            else if (op == "-")
+            {
+                Console.WriteLine(num1 - num2);
+            }
+            else if (op == "*")
+            {
+                Console.WriteLine(num1 * num2);
+            }
+            else if (op == "/")
+            {
+                Console.WriteLine(num1 / num2);
+            }
+            else 
+            {
+                Console.WriteLine("Incorrect operator!!");
+            }
+            
+            Console.ReadLine();
+        }
+              */
+________________________________________________________________________________________
+ /* Switch Statement
+
+        static void Main(string[] args) //Main method(function) of the program that gets executed
+        {
+            Console.WriteLine(getDay(2)); 	//Calling the switch statement in the main string
+          
+            
+            Console.ReadLine();
+        }
+
+        static string getDay(int dayNum) 
+        {
+            string dayName;
+
+            switch (dayNum)                     //Creates switch method set to return string dayName which is outside the MAIN method
+            {
+                case 0:                         //First Case of the switch statement
+                    dayName = "Monday";
+                    break;
+                case 1:
+                    dayName = "Tuesday";
+                    break;
+                case 2:
+                    dayName = "Wednesday";
+                    break;
+                case 3:
+                    dayName = "Thursday";
+                    break;
+                case 4:
+                    dayName = "Friday";
+                    break;
+                case 5:
+                    dayName = "Saturday";
+                    break;
+                case 6:                          //Last Case of the switch statement 
+                    dayName = "Sunday";          
+                    break;
+                default:                        // Default is a statement which catches input that does not equal to anythin specified in the switch 0 - switch 6 statements (0-6) and prints out an ERROR message
+                    dayName = "Invalid Day Number";
+                    break;
+            }
+
+            return dayName;
+        }
+
+        */
+________________________________________________________________________________________
+/* While loop & Do While loop
+        */
+        static void Main(string[] args) //Main method(function) of the program that gets executed
+        {
+            /*int i = 1;
+            while (i <= 5)              //Specifies the while loop condition
+            {
+                Console.WriteLine(i);   //Code executes until the condition is met
+                i++;                    //Increments i by 1 after each loop is completed
+            }
+            
+            int j = 6;
+            do                          //Executes the loop and then checks the condition i.e. tells the user j = 6 and stops, 
+            {
+                Console.WriteLine(j);
+                j++;
+            } while (j <= 5);
+
+
+            Console.ReadLine();
+        }
+            */
+
+________________________________________________________________________________________
+ /* Guessing game
+        
+        static void Main(string[] args) //Main method(function) of the program that gets executed
+        {
+           string secretWord = "Giraffe";
+           string guess = "";
+            int guessCount = 0;
+            int guessLimit = 3;
+            bool outOfGuesses = false;
+
+            while (guess != secretWord && !outOfGuesses) // != reads does not equal to
+            {
+            if (guessCount < guessLimit)
+                {
+                    Console.Write("Enter guess: ");
+                    guess = Console.ReadLine();
+                    guessCount++;
+                }
+                else 
+                {
+                    outOfGuesses = true;
+                    
+                }
+
+            }
+
+            if (outOfGuesses == true)
+            {
+                Console.WriteLine("You Lose!!");
+            }
+            else 
+            {
+                Console.WriteLine("You WIN!");
+            }
+            
+
+
+            Console.ReadLine();
+        }
+            */
+________________________________________________________________________________________
+/* For loop
+        
+        static void Main(string[] args) //Main method(function) of the program that gets executed
+        {
+            int[] luckyNumbers = { 2,3,4,1,5,2,3,6,3 };
+            for (int i = 0; i < luckyNumbers.Length; i++)  //Initialize int i variable; set condition; increment i
+            {
+                Console.WriteLine(luckyNumbers[i]);
+            }
+            
+
+                   
+
+            Console.ReadLine();
+        }
+            
+        */
+________________________________________________________________________________________
+/* Building an Exponent function
+        
+        static void Main(string[] args) //Main method(function) of the program that gets executed
+        {
+
+            Console.WriteLine(GetPow(2,3));
+
+                   
+
+            Console.ReadLine();
+        }
+
+        static int GetPow(int baseNum, int powNum) 
+        {
+            int result = 1;
+
+            for (int i = 0; i < powNum; i++) 
+            {
+                result = result * baseNum;
+            }
+
+            return result; 
+        }
+        */
+________________________________________________________________________________________
+/* 2D array
+        
+        static void Main(string[] args) //Main method(function) of the program that gets executed
+        {
+            int[,] numberGrid = {
+            {1, 2 },
+            {3, 4 },
+            {5, 6 }
+            };
+
+            int[,] myArray = new int[2, 3]; 		//Creates [2,3] array in myArray
+
+            Console.WriteLine(numberGrid[2,1]);		//Reads 6 from numberGrid
+            Console.ReadLine();
+        }
+        */
+________________________________________________________________________________________
+ /* Exception handling
+        
+        static void Main(string[] args) //Main method(function) of the program that gets executed
+        {
+             try                 //Any code that might break the code is put in the try/catch box
+            {
+                Console.Write("Enter a number: ");
+                int num1 = Convert.ToInt32(Console.ReadLine());
+                Console.Write("Enter another number: ");
+                int num2 = Convert.ToInt32(Console.ReadLine());
+
+                Console.WriteLine(num1 / num2);
+            }
+            //catch (Exception e) //Catches the exception which caused the code to break
+            //{
+            //    Console.WriteLine("ERROR: " + e.Message);     //If code above cannot be executed (i.e. division by zero) ERROR message is printed out
+            //}
+            catch (FormatException e)       //Catches exception where the input string format is wrong
+            {
+                Console.WriteLine(e.Message);
+            }
+            catch (DivideByZeroException e) //Catches exception where
+            {
+                Console.WriteLine(e.Message);
+            }
+            finally         //No matter what this code gets executed
+            {
+
+            }
+            Console.ReadLine();
+        }
+       */
+________________________________________________________________________________________
+/* Classes & objects
+
+// Right click on Program file in Solution Exporer -> add -> class and define new Class
+        
+class Book                      //Class name
+    {
+        //Declare class attributes
+        public string title;
+        public string author;
+        public int pages;
+    }
+
+        static void Main(string[] args) //Main method(function) of the program that gets executed
+        {
+            Book book1 = new Book();
+            book1.title = "Giraffe Academy";
+            book1.author = "Mike Dane";
+            book1.pages = 400;
+
+            Book book2 = new Book
+            {
+                title = "Giraffe Academy",
+                author = "Mike Dane",
+                pages = 400, 
+            };
+        
+            Console.WriteLine(book1.pages);
+            Console.ReadLine();
+________________________________________________________________________________________
+/* Constructors
+        
+        static void Main(string[] args) //Main method(function) of the program that gets executed
+        {
+            Book book1 = new Book("Harry Potter", "J.K.Rowling", 400);
+            
+            Book book2 = new Book("Lord of the Rings", "J.R.R.Tolkien", 750);
+            
+
+            Console.WriteLine(book1.pages);
+            Console.WriteLine(book2.title);
+            Console.ReadLine();
+        */
+
+class Book                      //Class name
+    {
+        //Declare class attributes
+        public string title;
+        public string author;
+        public int pages;
+
+        //Building a constructor - special method that gets called when calling object of this class
+        public Book(string aTitle, string aAuthor, int aPages) 
+        {
+            title = aTitle;     //Assigns title to aTitle from constructor
+            author = aAuthor;   //Assigns author to aAuthor from constructor
+            pages = aPages;     //Assigns pages to aPages from constructor
+            
+        }
+    }
+________________________________________________________________________________________
+//Object methods
+        //Declare class attributes
+        public string name;
+        public string major;
+        public double gpa;
+
+        //Building a constructor - special method that gets called when calling object of this class
+        public Student(string aName, string aMajor, double aGpa) 
+        {
+            name = aName;     
+            major = aMajor;     //Assigns pages to aPages from constructor
+            gpa = aGpa;   //Assigns author to aAuthor from constructor
+            
+        }
+        
+        public bool HasHonours() 
+        {
+            if (gpa >= 3.5)
+            {
+                return true;
+            }
+            return false;
+        }
+{
+        /* Object methods (Program body)
+        */
+
+        static void Main(string[] args) //Main method(function) of the program that gets executed
+        {
+            Student Student1 = new Student("Tom", "Engineering", 2.4);
+
+            Student Student2 = new Student("Max ", "Business", 3.7);
+
+
+
+            Console.WriteLine(Student1.major);
+            Console.WriteLine(Student1.HasHonours());	//Calls the method from Student object
+
+            Console.WriteLine(Student2.name + " has honours " + Student2.HasHonours());
+            Console.ReadLine();
+        }
+    }
+
+
+class Movie                      //Getters & setters get() and set()
+    {
+        //Declare class attributes
+        public string title;        //Public means the attribute can be accessed by anyone
+        public string director;
+        private string rating;      //Private means the attribute can be accesses only within this class code
+
+        //Building a constructor - special method that gets called when calling object of this class
+        public Movie(string aTitle, string aDirector, string aRating) 
+        {
+            title = aTitle;     
+            director = aDirector;     //Assigns pages to aPages from constructor
+            Rating = aRating;   //Assigning the value to Rating instead of rating means it calls the setter and ensures the condition is met
+            
+        }
+        //getter and setter - only allows the user to assign correct rating for movie
+        public string Rating 
+        {
+            get { return rating; }
+            set {
+                if (value == "G" || value == "PG" || value == "PG-13" || value == "NR") //Only these ratings can be entered 
+                {
+                    rating = value;
+                }
+                else 
+                {
+                    rating = "NR"; //In case incorrect rating is entered it is assigned to NR 
+                }
+            }
+        }
+        
+    }
+________________________________________________________________________________________
+/* Static Class Attribute
+
+ class Song                      //Static class attribute - creates an attribute specific to this class Song
+    {
+        //Declare class attributes
+        public string title;        //Public means the attribute can be accessed by anyone
+        public string artist;
+        public int duration;            
+        public static int songCount = 0;    //Attribute about the entire class = same across all the objects of this class
+
+        //Building a constructor - special method that gets called when calling object of this class
+        public Song(string aTitle, string aArtist, int aDuration) 
+        {
+            title = aTitle;     
+            artist = aArtist;       //Assigns title to aTitle from constructor
+            duration = aDuration;   
+            songCount++;            //Increments the song count everytime a song is created
+        }
+
+        public int getSongCount()   //Method to get the song count for each object
+        {
+            return songCount;
+        }
+        
+    }
+}
+
+ {
+        
+        
+
+        static void Main(string[] args) //Main method(function) of the program that gets executed
+        {
+            Song holiday = new Song("Holiday", "Green Day", 200);	//Creates an instance of the class Song
+            
+            Console.WriteLine(Song.songCount);
+            Song kashmir = new Song("Kashmir", "Led Zeppelin", 15);
+
+            Console.WriteLine(Song.songCount);
+
+            Console.WriteLine(kashmir.getSongCount());  //Calls the song count from getSongCount method
+
+
+
+
+            Console.ReadLine();
+        }
+    }
+*/
+________________________________________________________________________________________
+*/Static class methods
+
+
+ static class UsefulTool     //Static class means an instance(object) of this class cannot be created
+    {
+        public static void SayHi(string name) //Void means nothing is returned
+        {
+            Console.WriteLine("Hello" + name);
+        }
+    }
+ static void Main(string[] args) //Main method(function) of the program that gets executed
+        {
+            
+            UsefulTool.SayHi("Lukas");
+
+            Console.ReadLine();
+        }
+*/
+________________________________________________________________________________________
+ /* Inheritance
+         
+         three concepts: 
+                1) inheriting all the functionality from a class
+                2) extending the functionality
+                3) overriding one of the Superclass methods in the Subclass
+        
+
+        static void Main(string[] args) //Main method(function) of the program that gets executed
+        {
+            
+            Chef chef = new Chef();                         //Superclass 
+            chef.MakeSpecialDish();
+
+            ItalianChef italianChef = new ItalianChef();    //Subclass
+            italianChef.MakeSpecialDish();
+
+            Console.ReadLine();
+        }
+
+class Chef     
+    {
+        public void MakeChicken() 
+        {
+            Console.WriteLine("The Chef makes chicken");
+        }
+        public void MakeSalad()
+        {
+            Console.WriteLine("The Chef makes salad");
+        }
+        public virtual void MakeSpecialDish()       //Virtual means that subclasses can change the functionality of this method
+        {
+            Console.WriteLine("The Chef makes bbq ribs");
+        }
+
+ class ItalianChef : Chef		//Colon means ItalianChef class inherits all the functionality from the Chef class
+    {
+        public void MakePasta() 
+        {
+            Console.WriteLine("The Chef makes pasta");
+        }
+        public override void MakeSpecialDish()       //Overrides the virtual MakeSpecialDish method from Chef class 
+        {
+            Console.WriteLine("The Chef makes pizza");
+        }
+    }
+
+        */
+

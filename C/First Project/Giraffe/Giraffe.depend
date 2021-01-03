@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1594352681 source:d:\university of bath\c\first project\giraffe\main.c
+	<stdio.h>
+	<stdlib.h>
+

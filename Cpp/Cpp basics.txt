@@ -1,0 +1,836 @@
+Cpp basics
+-------------------------------------------------
+
+Print 
+-------------------------------------------------
+
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    cout << "Hello world!" << endl;
+    cout << "Lukas!" << endl;
+
+    return 0;
+}
+
+Variables
+-------------------------------------------------
+
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    string name = "John";
+    int age = 35;
+    int date; //sets it to null;
+
+
+    cout << "There once was a man named " << name << endl;
+    cout << "He was " << age << " years old" << endl;
+    cout << "He liked the name " << name << endl;
+    cout << "But he did not like being " << age << endl;
+
+    return 0;
+}
+
+Data Types
+-------------------------------------------------
+    char grade = 'A';
+    string phrase = "Girraffe Academy";
+    int number = 50;
+    double number2 = 24.542312312421124;
+    float desetina = 23.1;
+    bool isMale = true;
+
+Working with strings
+-------------------------------------------------
+
+    cout<<"Giraffe Academy\n";
+    cout<<phrase<<endl;
+
+
+    string name = "Giraffe Academy";
+
+    cout << name + " \n";
+    cout << name[2] + " \n";
+    cout << name.find("Academy", 3);
+    cout << name.substr(8,3);
+
+Working with numbers
+-------------------------------------------------
+
+	cout << pow(2,5) << endl;
+	cout << pow(2, 3) << endl;
+	cout << round(2.4) << endl;
+	cout << ceil(2.2) << endl;
+	cout << floor(2.6) << endl; 
+	cout << fmax(2, 5) << endl;
+	cout << fmin(2, 4) << endl;
+
+Getting user input
+-------------------------------------------------
+#include <iostream>
+using namespace std; 
+
+int main()
+{
+
+	int age;
+	cout << "Enter your age: ";
+	cin >> age;    // for characters and numbers like int and double
+	cout << "You are " << age << " years old";
+}
+ 
+#include <string>
+#include <iostream>
+using namespace std;
+  
+
+int main()
+{
+	
+	string age;
+	cout << "Enter your name: ";
+	getline(cin, age);
+	cout << "Your name is " << age;
+
+} 
+
+Building calculator
+-------------------------------------------------
+
+
+	int num1, num2; 
+	cout << "Enter first number: ";
+	cin >> num1; 
+
+	cout << "Enter Second number: "; 
+	cin >> num2; 
+
+	cout << num1 + num2;
+
+
+
+Building mad libs game
+-------------------------------------------------
+#include <string>
+#include <iostream>
+using namespace std;
+
+
+int main()
+{
+	string color, pluralNoun, celebrity; 
+
+	cout << "Enter a color: ";
+	getline(cin,color);
+
+	cout << "Enter a pluralNount: ";
+	getline(cin, pluralNoun);
+
+	cout << "Enter a celebrity: ";
+	getline(cin, celebrity);
+
+
+	cout << "Roses are " << color << endl;
+	cout << pluralNoun << " are blue" << endl;
+	cout << "I love " << celebrity << endl; 
+	
+}
+
+Arrays
+-------------------------------------------------
+int main()
+{
+	int luckyNums[] = {4, 8, 2, 4, 5};
+
+	cout << luckyNums[1] << endl;
+	
+	luckyNums[1] = 100; 
+
+	cout << luckyNums[1];
+}
+
+Functions
+-------------------------------------------------
+
+void sayHi() 
+{
+	cout << "Hello User";
+}
+
+
+#include <string>
+#include <iostream>
+using namespace std;
+
+
+void sayHi(string name, int age); //functions that are located below the main function can be 
+								//specified at the top using the function stab
+
+int main()
+{
+	sayHi("Lukas", 23); 
+	return 0; 
+}
+
+void sayHi(string name, int age)
+{
+	cout << "Hello " << name << " you are " << age;
+}
+
+
+Returns
+-------------------------------------------------
+
+
+#include <string>
+#include <iostream>
+using namespace std;
+
+double cube(double number) 
+{
+	double result; 
+
+	result = number * number * number; 
+	return result; 
+
+}
+
+int main()
+{
+	cout << cube(2.2); 
+	return 0; 
+}
+
+If Statements
+-------------------------------------------------
+
+#include <string>
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	bool isMale = false; 
+
+	if (isMale)
+	{
+		cout << "He is male";
+	}
+	else if (!isMale)
+	{
+		cout << "He is not male";
+	}
+}
+
+
+int main()
+{
+	bool isMale = false; 
+	bool isTall = true; 
+
+	if (isMale && isTall)
+	{
+		cout << "He is tall male";
+	}
+	else if (!isMale || isTall)
+	{
+		cout << "He is tall but not male";
+	}
+}
+
+More If Statements
+-------------------------------------------------
+
+
+int getMax(int num1, int num2, int num3) 
+{
+	int result;
+
+	if (num1 >= num2 && num1 >= num3) 
+	{
+		result = num1; 
+	}
+	else if (num2 >= num1 && num1 >= num3) 
+	{
+		result = num2;
+	}
+	else 
+	{
+		result = num3; 
+	}
+
+	return result; 
+}
+
+int main()
+{
+	cout << getMax(3, 3, 2);
+}
+
+Building a better calculator
+-------------------------------------------------
+int main()
+{
+	
+		
+	int num1, num2;
+	char op;
+
+
+	cout << "Enter first number: ";
+	cin >> num1;
+
+	cout << "Enter second number: ";
+	cin >> num2;
+
+	cout << "Enter operationr: ";
+	cin >> op;
+	int result{};
+	if (op == '+')
+	{
+		result = num1 + num2;
+	}
+	else if (op == '-')
+	{
+		result = num1 - num2;
+	}
+	else if (op == '*')
+	{
+		result = num1 * num2;
+	}
+	else if (op == '/')
+	{
+		result = num1 / num2;
+	}
+	else 
+	{
+		result = 0; 
+	}
+
+	cout << result;
+
+}
+
+Switch statement
+-------------------------------------------------
+
+#include <string>
+#include <iostream>
+using namespace std;
+
+string getDayofWeek(int dayNum) 
+{
+	string dayName; 
+
+	switch (dayNum) 
+	{
+	case 0: 
+		dayName = "Sunday";
+		break;
+	case 1: 
+		dayName = "Monday";
+		break;
+	case 2: 
+		dayName = "Tuesday";
+		break;
+	case 3:
+		dayName = "Wednesday";
+		break;
+	case 4: 
+		dayName = "Thursday";
+		break;
+	case 5: 
+		dayName = "Friday";
+		break; 
+	case 6: 
+		dayName = "Saturday";
+		break;
+	default: 
+		dayName = "Invalid Day Number";
+	}
+
+	return dayName; 
+}
+
+int main()
+{
+	
+		
+	cout << getDayofWeek(52);
+	 
+
+}
+
+While loop
+-------------------------------------------------
+
+
+int main()
+{
+	int index = 6; 
+
+	while (index != 1) //executes till the condition becomes false
+	{
+		cout << "Not yet " <<"("<<index<<")" << endl;
+		
+		index--;
+	}
+
+	cout << index; 
+
+}
+
+int main()
+{
+	int index = 6; 
+
+	do 
+	{
+		cout << index << endl;
+		index++;
+
+	} while (index <= 6);
+
+	cout << index; 
+
+}
+
+
+
+#include <string>
+#include <iostream>
+using namespace std;
+
+Guessing game
+-------------------------------------------------
+
+int main()
+{
+	int secretNumber = 4;
+	int guess;
+	int limit = 1; 
+	cout << "Enter secret number: ";
+	cin >> guess;
+
+	while (secretNumber != guess && limit <= 5)
+	{
+		cout << "Guess again: ";
+		cin >> guess;
+		limit++;
+			
+	}
+	if (guess == secretNumber) 
+	{
+		cout << "You won";
+	}
+	else 
+	{
+		cout << "You loose";
+	}
+	
+}
+
+For loop
+-------------------------------------------------
+
+
+int main()
+{
+	int nums[] = { 2, 2, 4, 5, 6, 1 };
+	
+	
+	for (int i = 0; i < size(nums); i++) 
+	{
+		cout << nums[i] << endl;;
+	}
+	cout << "Finished";
+}
+
+Exponential function
+-------------------------------------------------
+
+int power(int baseNum, int powNum) 
+{
+	int result = 1;
+
+	for (int i = 0; i< powNum; i++)
+	{
+		result = result * baseNum;
+	}
+	return result;
+}
+
+int main()
+{
+	cout << power(5, 2);
+	
+}
+
+2D Arrays and Nested loops
+-------------------------------------------------
+
+#include <string>
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main()
+{
+	int numberGrid[3][2] =
+	{
+		{1, 2},
+		{3, 4},
+		{5, 6}
+
+	};
+
+	cout << numberGrid[2][0];
+	
+}
+
+#include <string>
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main()
+{
+	int numberGrid[3][2] =
+	{
+		{1, 2},
+		{3, 4},
+		{5, 6}
+
+	};
+
+	for (int i = 0; i < 3; i++) 
+	{
+		for (int j = 0; j < 2; j++)
+		{
+			cout << numberGrid[i][j];
+		}
+		cout << endl; 
+	}
+	
+}
+
+Pointers
+-------------------------------------------------
+
+int main()
+{
+	int age = 19; 
+	int *pAge = &age; //Creating a pointer
+
+	double gpa = 3.4; 
+	double *pGpa = &gpa; 
+
+	string name = "Lukas";
+	string *pName = &name; 
+
+	cout << *pAge << endl; //Dereferencing a pointer
+	cout << pGpa << endl;	//Printing pointer value
+	cout << pName << endl;
+
+}
+
+Classes and objects
+-------------------------------------------------
+class - new data type
+object - instance of the class
+
+
+class Book
+{
+
+public:
+	string title;
+	string author; 
+	int pages;
+
+};
+
+int main()
+{
+	Book book1; 
+	book1.title = "Harry Potter";
+	book1.author = "J.K.Rowling";
+	book1.pages = 450; 
+
+	Book book2; 
+	book2.title = "Lord of the Rings";
+	book2.author = "JRR Tolkien";
+	book2.pages = 931; 
+
+	cout << book1.title << endl;
+	cout << book2.author << endl; 
+
+	return 0; 
+	
+}
+
+Constructor Functions
+-------------------------------------------------
+constructor gets called everytime and isntance of the class is created
+
+class Book
+{
+
+public:
+	string title;
+	string author; 
+	int pages;
+
+	Book(string name)
+	{
+		cout << "Creating book" << name << endl;
+	}
+
+};
+
+int main()
+{
+	Book book1("Harry Potter"); 
+	book1.title = "Harry Potter";
+	book1.author = "J.K.Rowling";
+	book1.pages = 450; 
+
+	Book book2("Lord of the Rings"); 
+	book2.title = "Lord of the Rings";
+	book2.author = "JRR Tolkien";
+	book2.pages = 931; 
+
+	cout << book1.title << endl;
+	cout << book2.author << endl; 
+
+	return 0; 
+	
+}
+
+
+
+class Book
+{
+
+public:
+	string title;
+	string author; 
+	int pages;
+	
+	Book() 
+	{
+		title = "no title";
+		author = "no author";
+		pages = 0;
+	}
+
+	Book(string aTitle, string aAuthor, int aPages)
+	{
+		title = aTitle; 
+		author = aAuthor;
+		pages = aPages; 
+
+		cout << "Creating book " << title << endl; 
+	}
+
+};
+
+int main()
+{
+	Book book1("Harry Potter","JK Rowling",560);
+
+	Book book2("Lord of the Rings","JRR Tolkien",605); 
+
+	Book book3; 
+
+	cout << book3.title; 
+
+	return 0; 
+	
+}
+
+Object Functions
+-------------------------------------------------
+ class Student
+{
+public:
+	string name;
+	string major;
+	double gpa;
+
+	Student(string aName, string aMajor, double aGpa)
+	{
+		name = aName;
+		major = aMajor;
+		gpa = aGpa;
+	}
+
+	bool hasHonors() // this function can be called on each instance of the object
+	{
+		if (gpa >= 3.5) 
+		{
+			return true; 
+		}
+		return false;
+	};
+
+};
+
+
+int main()
+{
+	Student student1("Lukas", "Engineering", 4.0);
+	
+	cout << student1.hasHonors(); 
+}
+
+Getters and Setters
+-------------------------------------------------
+
+class Movie 
+{
+private: 
+	string rating; 
+public:
+	string title;
+	string author;
+	
+	Movie(string aTitle, string aAuthor, string aRating) 
+	{
+		title = aTitle; 
+		author = aAuthor; 
+		setRating(aRating);
+	}
+
+	void setRating(string aRating) 
+	{
+		if (aRating == "PG" || aRating == "PG-13" || aRating == "R" || aRating == "NR") 
+		{
+			rating = aRating;
+		}
+		else 
+		{
+			rating = "NR";
+		}
+	}
+
+	string getRating() 
+	{
+		return rating;
+	}
+};
+
+
+int main()
+{
+	Movie avengers("The Avengers","Lukas Macha","Dog");
+
+	cout << avengers.getRating() << endl;
+
+	
+}
+
+Inheritance
+-------------------------------------------------
+
+class Chef 
+{
+public: 
+	void makeChicken() 
+	{
+		cout << "The chef makes chicken" << endl; 
+	}
+	void makeSalad()
+	{
+		cout << "The chef makes salad" << endl;
+	}
+	void makeSpecialDish()
+	{
+		cout << "The chef makes bbq ribs" << endl;
+	}
+};
+
+class ItalianChef : public Chef
+{
+public: 
+	void makePasta() 
+	{
+		cout << "The chef makes pasta" << endl; 
+	}
+
+	void makeSpecialDish() 
+	{
+		cout << "The chef makes spaghetti" << endl; 
+	}
+
+};
+
+int main()
+{
+	Chef chef; 
+	
+	chef.makeSpecialDish();
+
+	ItalianChef ichef1; 
+	ichef1.makeSpecialDish();
+
+	
+}
+
+File I/O
+-------------------------------------------------
+
+int main()
+{
+	ofstream writeToFile;
+	ifstream readFromFile;
+	string textToWrite = ""; 
+	string textFromFile = ""; 
+	writeToFile.open("test.txt", ios_base::out | ios_base::trunc);
+
+	if (writeToFile.is_open()) 
+	{
+		writeToFile << "Beginning of the file\n";
+		cout << "Enter data to write: ";
+		getline(cin, textToWrite);
+		writeToFile << textToWrite;
+		writeToFile.close();
+	}
+
+	readFromFile.open("test.txt", ios_base::in);
+	if (readFromFile.is_open()) 
+	{
+		while (readFromFile.good()) 
+		{
+			getline(readFromFile, textFromFile);
+			cout << textFromFile << "\n";
+		}
+		readFromFile.close();
+	}
+
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

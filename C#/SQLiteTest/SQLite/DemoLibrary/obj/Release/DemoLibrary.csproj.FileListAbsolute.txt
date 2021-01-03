@@ -1,0 +1,11 @@
+D:\University of Bath\Code\C#\SQLiteTest\SQLite\DemoLibrary\bin\Release\DemoLibrary.dll
+D:\University of Bath\Code\C#\SQLiteTest\SQLite\DemoLibrary\bin\Release\DemoLibrary.pdb
+D:\University of Bath\Code\C#\SQLiteTest\SQLite\DemoLibrary\bin\Release\Dapper.dll
+D:\University of Bath\Code\C#\SQLiteTest\SQLite\DemoLibrary\bin\Release\System.Data.SQLite.dll
+D:\University of Bath\Code\C#\SQLiteTest\SQLite\DemoLibrary\bin\Release\Dapper.xml
+D:\University of Bath\Code\C#\SQLiteTest\SQLite\DemoLibrary\bin\Release\System.Data.SQLite.xml
+D:\University of Bath\Code\C#\SQLiteTest\SQLite\DemoLibrary\bin\Release\System.Data.SQLite.dll.config
+D:\University of Bath\Code\C#\SQLiteTest\SQLite\DemoLibrary\obj\Release\DemoLibrary.csproj.CoreCompileInputs.cache
+D:\University of Bath\Code\C#\SQLiteTest\SQLite\DemoLibrary\obj\Release\DemoLibrary.csproj.CopyComplete
+D:\University of Bath\Code\C#\SQLiteTest\SQLite\DemoLibrary\obj\Release\DemoLibrary.dll
+D:\University of Bath\Code\C#\SQLiteTest\SQLite\DemoLibrary\obj\Release\DemoLibrary.pdb

@@ -1,0 +1,78 @@
+Squirrel app deployment
+----------------------------------
+https://github.com/Squirrel/Squirrel.Windows/blob/develop/docs/readme.md
+----------------------------------
+Step 1: 
+
+on the main solution (Inomech) - ManageNuGet packages and add squirrel.windows 
+
+Step 2: 
+
+somewhere on start-up create command for update check (can be in a button)
+
+ public Inomech()
+        {
+            InitializeComponent();
+            AddVersionNumber();
+            CheckForUpdates();
+        }
+
+        private async Task CheckForUpdates() 
+        {
+            using (var manager = new UpdateManager(@"C:\Temp\Releases")) //folder path where updates are saved - should be accessible for everyone
+            {
+                await manager.UpdateApp();
+            };     
+        }
+
+        private void AddVersionNumber() 
+        {
+            System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
+            FileVersionInfo versionInfo = FileVersionInfo.GetVersionInfo(assembly.Location);
+
+            this.Text += $" v.{versionInfo.FileVersion}";
+        }
+
+Step 3: 
+
+in Properties>Assembly Info - change the Assembly Version and AssemblyFileVersion
+switch to release build and build the solution 
+
+
+Step 4: 
+
+- open NuGet Package Explorer and create a new package
+- create lib\net45 folders
+- from app Release folder copy everything to lib\net45 apart from anything .pdb (could provide
+some source code to the end user as it contains debug options)
+- save to the location where the project is 
+
+Step 5:
+
+- in Visual Studio in Package Management Console run PM> Squirrel --releasify Inomech.1.0.0.nupkg // Inomech.1.0.0.nupkg must be the
+same name as the name of the NuGet Package that was created
+- this creates the installation file ("Releases") in the project folder 
+- Copy this to C:\Temp\Releases for future updates 
+
+Squirrel app update
+----------------------------------
+
+Step 1: 
+
+Update the app with new code
+
+Step 2: 
+
+- modify the AssemblyVersion in Properties>Assembly Info, save and build Release solution
+
+Step 3: 
+
+- open the NuGet Package created for this app in Step 4 above
+- click edit and change the version number 
+- copy anything that has been changed (most cases .exe and .config) to the lib\net45 folder (replace all files)
+- SaveAs into the same folder but with new version name
+
+Step 4: 
+
+- in VStudio Package Manager Console run PM> Squirrel --releasify Inomech.1.0.1.nupkg //(Inomech.1.0.1.nupkg) - must reflect the new version of the SavedAs NuGetPackage
+
