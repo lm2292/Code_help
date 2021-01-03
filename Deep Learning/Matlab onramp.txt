@@ -1,0 +1,370 @@
+Classify images
+-------------------------------------------------
+Task 1
+Load pretrained network
+deepnet = alexnet;
+
+Do not edit. This code imports and displays the image in file01.jpg.
+img1 = imread('file01.jpg');
+imshow(img1)
+
+Task 2
+Classify an image
+pred1 = classify(deepnet,img1)
+
+This code imports and displays the images in file02.jpg and file03.jpg.
+img2 = imread('file02.jpg');
+imshow(img2)
+img3 = imread('file03.jpg');
+imshow(img3)
+
+Task 3
+Classify further images
+pred2 = classify(deepnet,img2)
+pred3 = classify(deepnet,img3)
+
+
+Examine Network Layers
+-------------------------------------------------
+This code imports AlexNet.
+deepnet = alexnet;
+
+Task 1
+Save layers
+ly = deepnet.Layers
+
+Task 2
+Extract first layer
+inlayer = ly(1)
+
+Task 3
+Extract input size
+insz = inlayer.InputSize
+
+Task 4
+Extract last layer
+outlayer = ly(end)
+
+Task 5
+Extract class names
+categorynames = outlayer.Classes
+
+Investigate Predictions
+-------------------------------------------------
+
+This code loads in an image and imports AlexNet.
+img = imread('file02.jpg');
+imshow(img)
+net = alexnet;
+categorynames = net.Layers(end).ClassNames;
+
+Task 1
+Classify an image
+[pred,scores] = classify(net,img);
+
+Task 2
+Display scores
+bar(scores)
+
+Task 3
+Threshold scores
+thresh = median(scores) + std(scores);
+highscores = scores > thresh;
+
+Task 4
+Display thresholded scores
+bar(scores(highscores))
+
+Task 5
+Add tick labels
+xticks(1:length(scores(highscores)))
+xticklabels(categorynames(highscores))
+xtickangle(60)
+
+Create a Datastore
+-------------------------------------------------
+
+This code displays the images in the current folder and imports AlexNet.
+ls *.jpg
+net = alexnet;
+
+Task 1
+Create datastore
+imds = imageDatastore('file*.jpg')
+
+Task 2
+Extract file names
+fname = imds.Files
+
+Task 3
+Read an image
+img = readimage(imds,7)
+
+Task 4
+Classify images
+preds = classify(net,imds)
+
+Process Images for Classification
+-------------------------------------------------
+This code imports and displays the image from the file file01.jpg.
+img = imread('file01.jpg');
+imshow(img)
+
+Task 1
+View image size
+sz = size(img)
+
+Task 2
+Load network and view input size
+net = alexnet;
+inlayer = net.Layers(1);
+insz = inlayer.InputSize;
+
+Task 3
+Resize image and display
+img = imresize(img,[227 227])
+imshow(img)
+
+Resize Images in a Datastore
+-------------------------------------------------
+This code displays the images in the current folder and imports AlexNet.
+ls *.jpg
+net = alexnet
+
+Task 1
+Create datastore
+imds = imageDatastore('*.jpg')
+
+Task 2
+Create augmentedImageDatastore
+auds = augmentedImageDatastore([227 227],imds)
+
+Task 3
+Classify datastore
+preds = classify(net,auds)
+
+
+Preprocess Color Using a Datastore
+-------------------------------------------------
+This code displays the images in the current folder and imports AlexNet.
+ls *.jpg
+net = alexnet
+This code creates an image datastore of these images.
+imds = imageDatastore('file*.jpg')
+
+Task 1
+Display images in imds
+montage(imds)
+
+Task 2
+Create augmentedImageDatastore
+auds = augmentedImageDatastore([227 227],imds,'ColorPreprocessing',"gray2rgb")
+
+Task 3
+Classify datastore
+preds = classify(net,auds)
+
+
+Create a Datastore Using Subfolders
+-------------------------------------------------
+
+This code imports AlexNet
+net = alexnet;
+
+Task 1
+Create datastore
+flwrds = imageDatastore('Flowers',"IncludeSubfolders",true)
+
+Task 2
+Classify images
+preds = classify(net,flwrds)
+
+
+Label Images in a Datastore
+-------------------------------------------------
+
+This code creates a datastore of 960 flower images.
+load pathToImages
+flwrds = imageDatastore(pathToImages,'IncludeSubfolders',true);
+flowernames = flwrds.Labels
+
+Task 1
+Create datastore with labels
+flwrds = imageDatastore(pathToImages,"IncludeSubfolders",true,"LabelSource","foldernames")
+
+Task 2
+Extract new labels
+flowernames = flwrds.Labels;
+
+
+Split Data for Training and Testing
+-------------------------------------------------
+This code creates a datastore of 960 flower images.
+load pathToImages
+flwrds = imageDatastore(pathToImages,'IncludeSubfolders',true,'LabelSource','foldernames')
+
+Task 1
+Split datastore
+[flwrTrain,flwrTest] = splitEachLabel(flwrds,0.6)
+
+
+
+Task 2
+Split datastore randomly
+[flwrTrain,flwrTest] = splitEachLabel(flwrds,0.8,'randomized')
+
+
+
+Task 3
+Split datastore by number of images
+[flwrTrain, flwrTest] = splitEachLabel(flwrds,50)
+
+
+Modify Network Layers
+-------------------------------------------------
+This code imports AlexNet and extracts its layers.
+anet = alexnet;
+layers = anet.Layers
+
+Task 1
+Create new layer
+fc = fullyConnectedLayer(12)
+
+Task 2
+Replace 23rd layer
+layers(23) = fc
+
+Task 3
+Replace last layer
+layers(end) = classificationLayer
+
+
+Set Training Options
+-------------------------------------------------
+
+Task 1
+Set default options
+opts = trainingOptions('sgdm')
+
+Task 2
+Set initial learning rate
+opts = trainingOptions("sgdm","InitialLearnRate",0.001)
+
+Transfer Learning Example Script
+-------------------------------------------------
+The code below implements transfer learning for the flower species example in this chapter. It is available as the script trainflowers.mlx in the course example files. You can download the course example files from the help menu in the top-right corner. You can find more information on this dataset at the 17 Category Flower Dataset page from the University of Oxford.
+
+Note that this example can take some time to run if you run it on a computer that does not have a supported GPU.
+Get training images
+
+flower_ds = imageDatastore('Flowers','IncludeSubfolders',true,'LabelSource','foldernames');
+[trainImgs,testImgs] = splitEachLabel(flower_ds,0.6);
+numClasses = numel(categories(flower_ds.Labels));
+ 
+
+Create a network by modifying AlexNet
+
+net = alexnet;
+layers = net.Layers;
+layers(end-2) = fullyConnectedLayer(numClasses);
+layers(end) = classificationLayer;
+ 
+
+Set training algorithm options
+
+options = trainingOptions('sgdm','InitialLearnRate', 0.001);
+ 
+
+Perform training
+
+[flowernet,info] = trainNetwork(trainImgs, layers, options);
+ 
+
+Use trained network to classify test images
+
+testpreds = classify(flowernet,testImgs);
+
+
+Evaluate Performance
+-------------------------------------------------
+This code loads the training information of flowernet.
+load pathToImages
+load trainedFlowerNetwork flowernet info
+
+Task 1
+Plot training loss
+plot(info.TrainingLoss)
+
+This code creates a datastore of the flower images.
+dsflowers = imageDatastore(pathToImages,'IncludeSubfolders',true,'LabelSource','foldernames');
+[trainImgs,testImgs] = splitEachLabel(dsflowers,0.98);
+
+Task 2
+Classify images
+flwrPreds = classify(flowernet,testImgs)
+
+
+Investigate test performance
+-------------------------------------------------
+This code sets up the Workspace for this activity.
+load pathToImages.mat
+pathToImages
+flwrds = imageDatastore(pathToImages,'IncludeSubfolders',true,'LabelSource','foldernames');
+[trainImgs,testImgs] = splitEachLabel(flwrds,0.98);
+load trainedFlowerNetwork flwrPreds
+
+Task 1
+Extract labels
+flwrActual = testImgs.Labels;
+
+Task 2
+Count correct
+numCorrect = nnz(flwrPreds == flwrActual)
+
+Task 3
+Calculate fraction correct
+fracCorrect = numCorrect/numel(flwrPreds)
+
+Task 4
+Display confusion matrix
+confusionchart(testImgs.Labels,flwrPreds)
+
+
+Transfer Learning Function Summary
+Create a network
+Function	Description
+alexnet	Load pretrained network “AlexNet”
+supported networks	View list of available pretrained networks
+fullyConnectedLayer	Create new fully connected network layer
+classificationLayer	Create new output layer for a classification network
+ 
+
+Get training images
+Function	Description
+imageDatastore	Create datastore reference to image files
+augmentedImageDatastore	Preprocess a collection of image files
+splitEachLabel	Divide datastore into multiple datastores
+ 
+
+Set training algorithm options
+Function	Description
+trainingOptions	Create variable containing training algorithm options
+ 
+
+Perform training
+Function	Description
+trainNetwork	Perform training
+ 
+
+Use trained network to perform classifications
+Function	Description
+classify	Obtain trained network's classifications of input images
+ 
+
+Evaluate trained network
+Function	Description
+nnz	Count non-zero elements in an array
+confusionchart	Calculate confusion matrix
+heatmap	Visualize confusion matrix as a heatmap
+
+

@@ -1,0 +1,212 @@
+HTML Basics
+----------------------------------------------------------------
+- choosing the right text editor - Notepad, or specialised programs like
+ADAM or smthg - DO RESEARCH
+
+
+Creating HTML File
+----------------------------------------------------------------
+- HTML is a language which defines the website layout using tags
+- tags can be used to define the layout to define what the website looks like
+and what will the website have in it
+
+<!DOCTYPE html>
+<html>
+<head>
+
+
+</head>
+
+
+
+<body>
+
+
+</body>
+
+</html>
+
+- basic HTML skeleton - the head part is the "settings" part of the document and defines 
+what th site is like
+- body tag - the meat and the bone of the HTML website, includes all of the HTML code, where the content 
+for the webpage is, gets rendered by the browser <body> </body>
+
+Basic Tags
+----------------------------------------------------------------
+<h1-6> </h1-6> for headings
+<p> </p> for paragraphs
+<b></b> for bold
+<i></i> italic
+</br> for break between text
+</hr> for horizontal straight line
+<big></big> for bigger text
+<small></small> for smaller text
+<sub></sub> for subscript
+<sup></sup> for superscript
+
+Comments
+----------------------------------------------------------------
+<!-- Comment text --> for comment
+
+Style and colours
+----------------------------------------------------------------
+- using CSS to style HTML elements
+
+<p style = "color:red"></p> for changing text colour
+<p style = "color:red;background-color:blue;"></p> for changing the text colour and the background colour
+
+Formatting a website
+----------------------------------------------------------------
+<body>
+	<header>
+		<nav> for navigational tags like about, home, etc
+
+		</nav>
+	</header>
+
+	<main>
+		<article>
+			<section> for different sections of an article
+				<aside> for stuff like ads on a website
+				</aside>
+
+			</section>
+
+			<section>	
+
+			</section>
+		</article>
+	</main>
+
+	<footer>
+	</footer>
+</body>
+- for formatting the contente of the website
+
+Links
+----------------------------------------------------------------
+<a href="https://www.google.com">Google </a> to get a link to Google website opening in the same tab
+<a href="https://www.facebook.com" target="_blank">Facebook </a> to get a linkt to FB in a new tab
+<a href="page2.html" target="_blank">Page 2 link </a> for link to another of our websites
+<a href="dir1/page1.html" target="_blank">Page 3 link </a> for link to another website in different dirr
+<a href="download.jpg"> Sick link </a> for link to a .jpg 
+
+Images
+----------------------------------------------------------------
+<img src="https://www.mercedes-benz.cz/passengercars/mercedes-benz-cars/models/amg-gt/roadster-r190/design/designpackages/amgcarbonpackage/_jcr_content/par/productinfotextimage/media2/slides/videoimageslide_456555996/image.MQ6.12.20190702111040.jpeg" alt="Vehicle pic not availalble" />
+- for link to a pic on another website
+<img width="250" height="200" src="download.jpg" alt="Vehicle pic not available/>
+- for a resized image in the directory
+
+Videos & YouTube iFrames
+----------------------------------------------------------------
+<video height="300" src="Roboty_demo.mp4" controls> </video> for video on the website
+<video src="Roboty_demo.mp4" poster="ST10.png" autoplay controls  height="300" > </video>
+- for video with a poster that will autoplay when the website is entered
+
+<video src="Roboty_demo.mp4" poster="ST10.png" loop controls  height="300" > </video>
+- for video with a poster that will loop playing
+
+- for YT videos just go to YT, find a vide, click share>embed and copy and pase the HTM code
+
+Lists
+----------------------------------------------------------------
+
+	Unordered list
+	-------------------------
+	<ul>
+		<li>Apples</li> 
+		<li>Bannanas</li>		
+	</ul>
+
+	Ordered list
+	-------------------------
+	<ol>
+		<li>Apples</li> 
+		<li>Bannanas</li>		
+	</ol>
+
+	<ol type="I">
+		<li>Apples</li>
+			<ol type="i">
+				<li>item</li>
+			</ol> 
+		<li>Bannanas</li>
+		<li>Oranges</li>
+	</ol>
+
+	Description list
+	-------------------------
+	<dl>
+		<dt>Apples</dt>
+		<dd>-They are red</dd>
+	</dl>
+
+Tables
+----------------------------------------------------------------
+<table>
+ <thead> - to identify the header part of the table
+	<caption> Table of numbers </caption> - for table title
+		<tr> - for table row
+			<th> one </th> - for table column header
+			<th> two </th>
+			<th> three </th> 
+		</tr>
+ </thead>
+ <tbody> - to identify table body
+		<tr> 
+			<td colspan="2"> one </td> - for table data entry
+			<td> two </td>
+			<td> three </td> 
+		</tr>
+		<tr> 
+			<td> one </td>
+			<td> two </td>
+			<td> three </td> 
+		</tr>
+ </tbody>					
+</table>
+
+Divs and spans
+-----------------------------------------------------------------
+- block display vs inline display
+	- block displays take up an entire block of the website i.e. paragraph
+	- inline displays only take up as much space (columns) as they really need
+		and can be next to each other
+
+- spans are inline containers
+- divs are block containers
+
+Input & Forms
+-----------------------------------------------------------------
+<form> -acts as a wrapper for input tags 
+ <input type="text" value="Enter your username">
+ <input type="password">	
+ <input type="date">
+ <input type="range">
+ <input type="file">
+ <textarea rows="10" cols="30">	
+ 	
+ </textarea>
+ <input type="checkbox"> - checkboxes can be checked multiple at a time
+ <input name="btn" type="radio"> - for radio btns if they have the same name specified only one can be checked at a time
+ <input name="btn" type="radio">
+</form>
+
+iFrames
+-----------------------------------------------------------------
+- allows displaying another website in the current website (embedding the website)
+<iframe src="https://giraffeacademy.com" frameborder="0" width ="1000" height="800"></iframe>
+
+Meta tags
+-----------------------------------------------------------------
+<meta charset ="UTF-8">
+<meta name="description" content="This is an awesome website">
+<meta name="author" content="Lukas">
+<meta name="keywords" content="HTML, Tutorial, Tutor">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		
+
+
+
+

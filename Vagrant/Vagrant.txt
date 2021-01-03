@@ -1,0 +1,72 @@
+Vagrant setup
+-------------------------------------------------
+
+1) Create working file for the project
+
+2) cd into the working file and run vagrant init
+
+3) in the VagrantFile setup vm machine and network
+
+i.e. 
+
+config.vm.box = "ubuntu/xenial64"
+
+config.vm.provider "virtualbox" do |v|
+
+	v.memory = 2048
+	v.cpus = 2
+end
+
+config.vm.network "public_network"
+
+4) run vagrant up
+
+5) run in VM: sudo nano /etc/ssh/sshd_config
+
+6) comment out line
+
+#AcceptEnv LANG LC_*
+
+7) run in VM: nano ~/.bashrc
+
+at the very bottom add line: export LC_ALL="en_US.UTF-8"
+
+8) run sudo reboot
+
+9) ssh back to vagrant: vagrant ssh
+
+10) to install newer python add new repos: sudo add-apt-repository ppa:deadsnakes/ppa
+
+11) run sudo apg-get update 
+
+to update the new available packages
+
+12) run sudo apt-get install python3.8
+
+to install python3.8
+
+13) run sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.5 1 and then run again	
+	sudo update-alternatives --isntall /usr/bin/python3 python3 /usr/bin/python3.8 2 
+
+to change default python3.5 to default python3.6
+
+14) run sudo update-alternatives --config python3 
+
+to change the used version of python
+
+15) install pip by running wget https://bootstrap.pypa.io/get-pip.py
+
+last time there was an issue with installing pip with python3.8 - just use python3.6 
+
+16) run sudo pip install virtualenv
+
+to install virtualenvironment to the entire system
+
+17 sudo apt-get install git
+  git config --global user.name "Lukas Macha"
+  git config --global user.email "macha@inomech.com"
+
+18) to get an ssh key: run ssh-keygen -t rsa -b 4096 -C
+
+19) cat ~/.ssh/id_rsa.pub to view the ssh key
+

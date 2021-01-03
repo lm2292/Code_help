@@ -1,0 +1,42 @@
+Machine Learning with Python
+--------------------------------------------------------------------------
+
+Artificial Intelligence
+-------------------------------------------------
+- covers machine learning as well 
+- machine learning figures out the rules for us
+
+for classical programming: 
+data + rules > answers 
+
+machine learning: 
+data + answers > rules
+
+goeals for machine learning models: highest accuracy possible
+
+Machine learning: rather than giving the program the rules, an algorithm finds the rules for us
+
+Neural Networks
+-------------------------------------------------
+form of machine learning that uses a layered definition of data
+
+- for deep learning > more than two layers
+- data transformed through different layers of rules 
+
+standard machine learning only includes one or two layers	 
+
+Data
+-------------------------------------------------
+- important aspect of machine learning and ai 
+
+Features
+	- input to the model Midterm1, Final
+Label
+	- output - what we are looking for - Midterm2
+
+Feed features to the model and get label out of the model
+
+Models based on data therefore data are needed for ML 
+
+Tensor
+-------------------------------------------------
